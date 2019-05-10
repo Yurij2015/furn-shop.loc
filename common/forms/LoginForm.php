@@ -1,9 +1,8 @@
 <?php
-namespace common\models;
-
+namespace common\forms;
 use Yii;
 use yii\base\Model;
-
+use common\models\User;
 /**
  * Login form
  */

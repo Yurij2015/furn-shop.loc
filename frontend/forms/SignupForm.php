@@ -1,9 +1,11 @@
 <?php
-namespace frontend\models;
+
+namespace frontend\forms;
 
 use Yii;
 use yii\base\Model;
 use common\models\User;
+
 
 /**
  * Signup form
@@ -47,7 +49,7 @@ class SignupForm extends Model
         if (!$this->validate()) {
             return null;
         }
-        
+
         $user = new User();
         $user->username = $this->username;
         $user->email = $this->email;
