@@ -9,16 +9,25 @@ use common\models\User;
 /**
  * UserSearch represents the model behind the search form of `common\models\User`.
  */
-class UserSearch extends User
+class UserSearch extends Model
 {
+
+    public $id;
+    public $date_from;
+    public $date_to;
+    public $username;
+    public $email;
+    public $status;
+
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['id', 'status', 'created_at', 'updated_at'], 'integer'],
+            [['id', 'status'], 'integer'],
             [['username', 'email', 'verification_token'], 'safe'],
+            [['date_from', 'date_to'], 'date', 'format'=>'php:Y-m-d']
         ];
     }
 
@@ -63,7 +72,9 @@ class UserSearch extends User
         ]);
 
         $query->andFilterWhere(['like', 'username', $this->username])
-            ->andFilterWhere(['like', 'email', $this->email]);
+            ->andFilterWhere(['like', 'email', $this->email])
+            ->andFilterWhere(['>=', 'created_at', $this->date_from ? strtotime($this->date_from . ' 00:00:00') : null])
+            ->andFilterWhere(['<=', 'created_at', $this->date_to ? strtotime($this->date_to . ' 23:59:59') : null]);
 
         return $dataProvider;
     }
