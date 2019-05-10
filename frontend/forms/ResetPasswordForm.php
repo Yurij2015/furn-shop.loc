@@ -48,17 +48,17 @@ class ResetPasswordForm extends Model
         ];
     }
 
-    /**
-     * Resets password.
-     *
-     * @return bool if password was reset.
-     */
-    public function resetPassword()
-    {
-        $user = $this->_user;
-        $user->setPassword($this->password);
-        $user->removePasswordResetToken();
-
-        return $user->save(false);
-    }
+//    /**
+//     * Resets password.
+//     *
+//     * @return bool if password was reset.
+//     */
+//    public function resetPassword()
+//    {
+//        $user = $this->_user;
+//        $user->setPassword($this->password);
+//        $user->removePasswordResetToken();
+//
+//        return $user->save(false);
+//    }
 }
