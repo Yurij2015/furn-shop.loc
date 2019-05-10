@@ -18,7 +18,8 @@ use frontend\forms\PasswordResetRequestForm;
 use frontend\forms\ResetPasswordForm;
 use frontend\forms\SignupForm;
 use frontend\forms\ContactForm;
-use common\models\User;
+
+//use common\models\User;
 
 /**
  * Site controller
@@ -179,6 +180,7 @@ class SiteController extends Controller
 //        if ($model->load(Yii::$app->request->post()) && $model->signup()) {
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             // try {
+            Yii::$app->session->setFlash('success', 'Thank you for registration. Please check your inbox for verification email.');
             $user = (new SignupService())->signup($form);
             if (Yii::$app->getUser()->login($user)) {
                 return $this->goHome();
