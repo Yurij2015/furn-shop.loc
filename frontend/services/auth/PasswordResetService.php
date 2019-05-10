@@ -12,9 +12,18 @@ use common\models\User;
 use frontend\forms\PasswordResetRequestForm;
 use frontend\forms\ResetPasswordForm;
 use Yii;
+use yii\mail\MailerInterface;
 
 class PasswordResetService
 {
+//    private $supportEmail;
+//
+//    public function __construct($supportEmail, MailerInterface $mailer)
+//    {
+//        $this->supportEmail = $supportEmail;
+//        $this->mailer = $mailer;
+//    }
+
     /**
      * Sends an email with a link, for resetting the password.
      *
@@ -39,14 +48,14 @@ class PasswordResetService
         }
 
 
-        $sent = Yii::$app
+        $sent = $this
             ->mailer
             ->compose(
                 ['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'],
                 ['user' => $user]
             )
-            ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
-            ->setTo($form->email)
+            ->setFrom($this->supportEmail)
+            ->setTo($user->email)
             ->setSubject('Password reset for ' . Yii::$app->name)
             ->send();
         if (!$sent) {
@@ -80,6 +89,4 @@ class PasswordResetService
             throw new \RuntimeException('Saving error.');
         }
     }
-
-
 }
