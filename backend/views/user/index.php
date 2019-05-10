@@ -12,8 +12,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?= Html::a(Yii::t('app', 'Create User'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
@@ -25,18 +23,21 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
             'id',
             'username',
-            'auth_key',
-            'password_hash',
-            'password_reset_token',
-            //'email:email',
-            //'status',
-            //'created_at',
-            //'updated_at',
+//            'auth_key',
+            'email:email',
+            [
+                'attribute' => 'status',
+                'filter' => \backend\helpers\UserHelper::statusList(),
+                'value' => function (\common\models\User $user) {
+                    return \backend\helpers\UserHelper::statusLabel($user->status);
+                },
+                'format' => 'raw',
+            ],
+            'created_at:datetime',
+//            'updated_at:datetime',
             //'verification_token',
-
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
