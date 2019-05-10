@@ -6,10 +6,11 @@
  * Time: 19:04
  */
 
-namespace services\contact;
+namespace frontend\services\contact;
 
 
 use frontend\forms\ContactForm;
+use yii\mail\MailerInterface;
 
 class ContactService
 {
@@ -21,16 +22,18 @@ class ContactService
      */
 //    private $supportEmail;
     private $adminEmail;
+    private $mailer;
 
-    public function __construct($adminEmail)
+    public function __construct($adminEmail, MailerInterface $mailer)
     {
 //        $this->supportEmail = $supportEmail;
         $this->adminEmail = $adminEmail;
+        $this->mailer = $mailer;
     }
 
     public function send(ContactForm $form): void
     {
-        $sent = \Yii::$app->mailer->compose()
+        $sent = $this->mailer->compose()
 //            ->setFrom($this->supportEmail)
             ->setReplyTo($this->adminEmail)
             ->setSubject($form->subject)

@@ -6,7 +6,7 @@ use frontend\forms\ResendVerificationEmailForm;
 use frontend\forms\VerifyEmailForm;
 use frontend\services\auth\PasswordResetService;
 use frontend\services\auth\SignupService;
-use services\contact\ContactService;
+use frontend\services\contact\ContactService;
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\web\BadRequestHttpException;

@@ -16,13 +16,12 @@ use yii\mail\MailerInterface;
 
 class PasswordResetService
 {
-//    private $supportEmail;
-//
-//    public function __construct($supportEmail, MailerInterface $mailer)
-//    {
-//        $this->supportEmail = $supportEmail;
-//        $this->mailer = $mailer;
-//    }
+    private $mailer;
+
+    public function __construct(MailerInterface $mailer)
+    {
+        $this->mailer = $mailer;
+    }
 
     /**
      * Sends an email with a link, for resetting the password.
