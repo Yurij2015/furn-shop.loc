@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\forms\manage\User\UserCreateForm;
 use Yii;
 use common\models\User;
 use backend\models\UserSearch;
@@ -64,14 +65,19 @@ class UserController extends Controller
      */
     public function actionCreate()
     {
-        $model = new User();
+        $form = new UserCreateForm();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+            try {
+                $user = $this->service->create($form);
+                return $this->redirect(['view', 'id' => $user->id]);
+            } catch (\DomainException $e) {
+                Yii::$app->errorHandler->logException($e);
+                Yii::$app->session->setFlash('error', $e->getMessage());
+            }
         }
-
         return $this->render('create', [
-            'model' => $model,
+            'model' => $form,
         ]);
     }
 
