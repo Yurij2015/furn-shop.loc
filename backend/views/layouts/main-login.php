@@ -8,6 +8,7 @@ use yii\helpers\Html;
 dmstr\web\AdminLteAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
+
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
