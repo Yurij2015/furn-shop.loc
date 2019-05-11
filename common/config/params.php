@@ -1,12 +1,13 @@
 <?php
 return [
-    'adminEmail' => 'admin@example.com',
-    'supportEmail' => 'support@example.com',
-    'senderEmail' => 'noreply@example.com',
-    'senderName' => 'Example.com mailer',
+    'adminEmail' => 'admin@furn-shop.loc',
+    'supportEmail' => 'support@furn-shop.loc',
+    'senderEmail' => 'noreply@furn-shop.loc',
+    'senderName' => 'Furn-shop.loc mailer',
     'user.passwordResetTokenExpire' => 3600,
-    'cookieDomain' => '.example.com',
-    'frontendHostInfo' => 'http://example.com',
-    'backendHostInfo' => 'http://backend.example.com',
+    'cookieDomain' => '.furn-shop.loc',
+    'frontendHostInfo' => 'http://furn-shop.loc',
+    'backendHostInfo' => 'http://backend.furn-shop.loc',
+    'siteName' => 'Furniture Shop',
 
 ];

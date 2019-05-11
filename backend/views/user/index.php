@@ -14,9 +14,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-index">
 
-    <p>
-        <?= Html::a(Yii::t('app', 'Create User'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -57,7 +54,10 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'created_at:datetime',
 //            'updated_at:datetime',
             //'verification_token',
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {delete} {link}',
+            ],
         ],
     ]); ?>
 

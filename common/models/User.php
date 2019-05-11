@@ -45,6 +45,13 @@ class User extends ActiveRecord implements IdentityInterface
         return $user;
     }
 
+    public function edit(string $username, string $email): void
+    {
+        $this->username = $username;
+        $this->email = $email;
+        $this->updated_at = time();
+    }
+
     public static function create(string $username, string $email, string $password): self
     {
         $user = new User();
@@ -98,8 +105,8 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-//     * {@inheritdoc}
-//     */
+     * //     * {@inheritdoc}
+     * //     */
 //    public function rules()
 //    {
 //        return [
