@@ -8,6 +8,7 @@ use backend\models\ProdcategorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\data\ActiveDataProvider;
 
 /**
  * ProdcategoryController implements the CRUD actions for Prodcategory model.
@@ -55,6 +56,18 @@ class ProdcategoryController extends Controller
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
+
+//        $product = $this->findModel($id);
+//
+//        $dataProvider = new ActiveDataProvider([
+//            'query' => $product->getProducts()->orderBy('idproduct ASC') // отсортировать
+//        ]);
+//
+//        return $this->render('view', [
+//            'model' => $product,
+//            'product' => $dataProvider
+//        ]);
+
     }
 
     /**

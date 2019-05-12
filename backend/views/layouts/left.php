@@ -28,6 +28,7 @@
 //                    ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
                     ['label' => 'Users', 'icon' => 'user', 'url' => ['/user']],
                     ['label' => 'Category', 'icon' => 'list', 'url' => ['/prodcategory']],
+                    ['label' => 'Product', 'icon' => 'list', 'url' => ['/product']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     [
                         'label' => 'Some tools',
