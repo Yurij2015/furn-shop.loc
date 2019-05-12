@@ -29,6 +29,10 @@
                     ['label' => 'Users', 'icon' => 'user', 'url' => ['/user']],
                     ['label' => 'Category', 'icon' => 'list', 'url' => ['/prodcategory']],
                     ['label' => 'Product', 'icon' => 'list', 'url' => ['/product']],
+                    ['label' => 'Order', 'icon' => 'list', 'url' => ['/odrer']],
+                    ['label' => 'News', 'icon' => 'list', 'url' => ['/news']],
+                    ['label' => 'News category', 'icon' => 'list', 'url' => ['/newscategory']],
+
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     [
                         'label' => 'Some tools',

@@ -29,9 +29,9 @@ use yii\helpers\Html;
                         <hr>
 
                         <?php
-                        $mainImg = $product->getImage();
+                        $mainImg = $product->getImage(200*200);
                         ?>
-                        <?= Html::img($mainImg->getUrl()) ?>
+                        <?= Html::img($mainImg->getUrl(), ['alt' => $product->productname]) ?>
 
                         <h4>Price: <?= $product->price ?></h4>
                         <p>Title: <?= $product->productname ?></p>
