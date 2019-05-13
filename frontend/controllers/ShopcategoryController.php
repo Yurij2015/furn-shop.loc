@@ -8,9 +8,12 @@
 namespace frontend\controllers;
 
 use backend\models\Prodcategory;
+use backend\models\ProdcategorySearch;
 use backend\models\Product;
+use backend\models\ProductSearch;
 use Yii;
 use yii\web\Controller;
+use yii\data\ActiveDataProvider;
 
 class ShopcategoryController extends Controller
 {
@@ -21,11 +24,32 @@ class ShopcategoryController extends Controller
         return $this->render('index', compact('hits'));
     }
 
+
     public function actionView($idcategory)
     {
         $idcategory = Yii::$app->request->get('idcategory');
         $products = Product::find()->where(['prodcategory_idcategory' => $idcategory])->all();
-        return $this->render('view', compact('products'));
+
+
+        $query = ProductSearch::find()->where(['prodcategory_idcategory' => $idcategory]);
+        $provider = new ActiveDataProvider([
+            'query' => $query
+        ]);
+
+        $searchModel = new ProductSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('view', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'products' => $products,
+            'provider' => $provider
+
+        ]);
+
+//        $idcategory = Yii::$app->request->get('idcategory');
+//        $products = Product::find()->where(['prodcategory_idcategory' => $idcategory])->all();
+//        return $this->render('view', compact('products'));
     }
 
 }

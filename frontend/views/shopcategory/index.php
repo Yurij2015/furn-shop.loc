@@ -7,9 +7,7 @@ $this->title = Yii::$app->params['siteName'];
 use yii\grid\GridView;
 use yii\web\View;
 use yii\helpers\Html;
-use backend\models\Prodcategory;
-use backend\models\Product;
-use frontend\controllers\ShopcategoryController;
+
 
 ?>
 
@@ -46,36 +44,10 @@ use frontend\controllers\ShopcategoryController;
                         <?php if ($product->new): ?>
                         <?php endif; ?>
                     </div>
+
+
+
                 <?php endforeach; ?>
-
-                <?= GridView::widget([
-                    'dataProvider' => $provider,
-                    'filterModel' => $searchModel,
-                    'columns' => [
-                        ['class' => 'yii\grid\SerialColumn'],
-
-                        'idproduct',
-
-                        [
-                             'attribute' => 'prodcategory_idcategory',
-                             'value' => 'prodcategory.pcategoryname',
-                        ],
-
-                        'prodcategory_idcategory',
-                        'productname',
-                        'prodcontent:ntext',
-                        'price',
-                        //'keywords',
-                        //'proddecription',
-                        //'img',
-                        //'hit',
-                        //'new',
-                        //'sale',
-
-                        ['class' => 'yii\grid\ActionColumn'],
-                    ],
-                ]); ?>
-
             <?php else: ?>
             <h4>Здесь пусто</h4>
             <hr>
