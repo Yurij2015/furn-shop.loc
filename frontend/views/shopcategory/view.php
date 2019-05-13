@@ -29,7 +29,7 @@ use yii\helpers\Html;
                         <hr>
 
                         <?php
-                        $mainImg = $product->getImage(200*200);
+                        $mainImg = $product->getImage();
                         ?>
                         <?= Html::img($mainImg->getUrl(), ['alt' => $product->productname]) ?>
 
