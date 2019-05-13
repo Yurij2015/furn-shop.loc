@@ -8,7 +8,6 @@ use yii\grid\GridView;
 use yii\web\View;
 use yii\helpers\Html;
 
-
 ?>
 
 <div class="site-index">
@@ -24,37 +23,43 @@ use yii\helpers\Html;
                 <hr>
                 <?= \common\components\MenuWidget::widget(['tpl' => 'menu']); ?>
             </div>
-            <?php if (!empty($products)) : ?>
-                <?php foreach ($products as $product) : ?>
-                    <div class="col-lg-3">
-                        <h4><?= $product->productname ?></h4>
-                        <hr>
 
-                        <?php
-                        $mainImg = $product->getImage();
-                        ?>
-                        <?= Html::img($mainImg->getUrl(), ['alt' => $product->productname]) ?>
+            <div class="col-lg-9">
+                <hr>
+                <?= GridView::widget([
+                    'dataProvider' => $dataProvider,
+                    'filterModel' => $searchModel,
+                    'columns' => [
+                        ['class' => 'yii\grid\SerialColumn'],
+                        //'idproduct',
+//                        [
+//                            'attribute' => 'prodcategory_idcategory',
+//                            'value' => 'prodcategory.pcategoryname',
+//                        ],
 
-                        <h4>Price: <?= $product->price ?></h4>
-                        <p>Title: <?= $product->productname ?></p>
-                        <p>Keywords: <?= $product->keywords ?></p>
-                        <p>Description: <?= $product->proddecription ?></p>
-                        <p>Detail: <?= $product->prodcontent ?></p>
-                        <p>Category: <?= $product->prodcategory->pcategoryname ?></p>
-                        <?php if ($product->new): ?>
-                        <?php endif; ?>
-                    </div>
+                        //'prodcategory_idcategory',
+                        'productname',
+                        //'prodcontent:ntext',
+                        'price',
+                        [
+                            'attribute' => 'image',
+                            'format' => 'html',
+                            'value' => function ($product) {
+                                return Html::img($product->getImage()->getUrl(), ['alt' => $product->productname, 'width' => '100']);
+                            },
+                        ],
+                        //'keywords',
+                        //'proddecription',
+                        //'img',
+                        //'hit',
+                        //'new',
+                        //'sale',
 
-
-
-                <?php endforeach; ?>
-            <?php else: ?>
-            <h4>Здесь пусто</h4>
-            <hr>
-            <p>Товаров еще нет</p>
-        </
-        3>
-        <?php endif; ?>
+                        ['class' => 'yii\grid\ActionColumn'],
+                    ],
+                ]); ?>
+            </div>
+        </div>
     </div>
 </div>
 </div>

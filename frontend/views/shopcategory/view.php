@@ -26,42 +26,21 @@ use frontend\controllers\ShopcategoryController;
                 <hr>
                 <?= \common\components\MenuWidget::widget(['tpl' => 'menu']); ?>
             </div>
-            <?php if (!empty($products)) : ?>
-                <?php foreach ($products as $product) : ?>
-                    <div class="col-lg-3">
-                        <h4><?= $product->productname ?></h4>
-                        <hr>
-
-                        <?php
-                        $mainImg = $product->getImage();
-                        ?>
-                        <?= Html::img($mainImg->getUrl(), ['alt' => $product->productname]) ?>
-
-                        <h4>Price: <?= $product->price ?></h4>
-                        <p>Title: <?= $product->productname ?></p>
-                        <p>Keywords: <?= $product->keywords ?></p>
-                        <p>Description: <?= $product->proddecription ?></p>
-                        <p>Detail: <?= $product->prodcontent ?></p>
-                        <p>Category: <?= $product->prodcategory->pcategoryname ?></p>
-                        <?php if ($product->new): ?>
-                        <?php endif; ?>
-                    </div>
-                <?php endforeach; ?>
-
+            <div class="col-lg-9">
                 <?= GridView::widget([
                     'dataProvider' => $provider,
-                    'filterModel' => $searchModel,
+                    //'filterModel' => $searchModel,
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
 
-                        'idproduct',
+                        //'idproduct',
 
                         [
-                             'attribute' => 'prodcategory_idcategory',
-                             'value' => 'prodcategory.pcategoryname',
+                            'attribute' => 'prodcategory_idcategory',
+                            'value' => 'prodcategory.pcategoryname',
                         ],
 
-                        'prodcategory_idcategory',
+                        //'prodcategory_idcategory',
                         'productname',
                         'prodcontent:ntext',
                         'price',
@@ -75,13 +54,39 @@ use frontend\controllers\ShopcategoryController;
                         ['class' => 'yii\grid\ActionColumn'],
                     ],
                 ]); ?>
+            </div>
+            <?php if (!empty($products)) : ?>
+
+                <?php foreach ($products as $product) : ?>
+                    <div class="col-lg-3">
+
+                        <h4><?= $product->productname ?></h4>
+                        <hr>
+
+                        <?php
+                        //$mainImg = $product->getImage();
+                        ?>
+                        <?= Html::img($product->getImage()->getUrl(), ['alt' => $product->productname]) ?>
+
+                        <h4>Price: <?= $product->price ?></h4>
+                        <p>Title: <?= $product->productname ?></p>
+                        <p>Keywords: <?= $product->keywords ?></p>
+                        <p>Description: <?= $product->proddecription ?></p>
+                        <p>Detail: <?= $product->prodcontent ?></p>
+                        <p>Category: <?= $product->prodcategory->pcategoryname ?></p>
+                        <?php if ($product->new): ?>
+                        <?php endif; ?>
+                    </div>
+                <?php endforeach; ?>
+
+
 
             <?php else: ?>
             <h4>Здесь пусто</h4>
             <hr>
             <p>Товаров еще нет</p>
-        </
-        3>
+        </div>
+
         <?php endif; ?>
     </div>
 </div>

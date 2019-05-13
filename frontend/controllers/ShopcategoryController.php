@@ -20,8 +20,18 @@ class ShopcategoryController extends Controller
 
     public function actionIndex()
     {
-        $hits = Product::find()->where(['hit' => '1'])->limit(6)->all();
-        return $this->render('index', compact('hits'));
+        // $hits = Product::find()->where(['hit' => '1'])->limit(6)->all();
+        //return $this->render('index', compact('hits'));
+
+        $searchModel = new ProductSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+
+
     }
 
 
@@ -30,18 +40,17 @@ class ShopcategoryController extends Controller
         $idcategory = Yii::$app->request->get('idcategory');
         $products = Product::find()->where(['prodcategory_idcategory' => $idcategory])->all();
 
-
         $query = ProductSearch::find()->where(['prodcategory_idcategory' => $idcategory]);
         $provider = new ActiveDataProvider([
             'query' => $query
         ]);
 
         $searchModel = new ProductSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        //$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('view', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            //'searchModel' => $searchModel,
+            //'dataProvider' => $dataProvider,
             'products' => $products,
             'provider' => $provider
 
