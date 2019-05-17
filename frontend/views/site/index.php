@@ -3,65 +3,63 @@
 /* @var $this yii\web\View */
 
 $this->title = Yii::$app->params['siteName'];
+
+use yii\grid\GridView;
+use yii\web\View;
+use yii\helpers\Html;
+
 ?>
+
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+        <h1>Интернет-салон мебели!</h1>
+        <p class="lead">Качественная и надежная мебель от лучшей компании</p>
     </div>
-
     <div class="body-content">
-
         <div class="row">
             <div class="col-lg-3">
                 <h4>Category</h4>
                 <hr>
                 <?= \common\components\MenuWidget::widget(['tpl' => 'menu']); ?>
             </div>
+
             <div class="col-lg-9">
-                <h4>News</h4>
                 <hr>
+                <?= GridView::widget([
+                    'dataProvider' => $dataProvider,
+                    'filterModel' => $searchModel,
+                    'columns' => [
+                        ['class' => 'yii\grid\SerialColumn'],
+                        //'idproduct',
+//                        [
+//                            'attribute' => 'prodcategory_idcategory',
+//                            'value' => 'prodcategory.pcategoryname',
+//                        ],
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                    dolore eu
-                    fugiat nulla pariatur.</p>
+                        //'prodcategory_idcategory',
+                        'productname',
+                        //'prodcontent:ntext',
+                        'price',
+                        [
+                            'attribute' => 'image',
+                            'format' => 'html',
+                            'value' => function ($product) {
+                                return Html::img($product->getImage()->getUrl(), ['alt' => $product->productname, 'width' => '100']);
+                            },
+                        ],
+                        //'keywords',
+                        //'proddecription',
+                        //'img',
+                        //'hit',
+                        //'new',
+                        //'sale',
 
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                    dolore eu
-                    fugiat nulla pariatur.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                    dolore eu
-                    fugiat nulla pariatur.</p>
-
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                    dolore eu
-                    fugiat nulla pariatur.</p>
-
-                </p>
+                        ['class' => 'yii\grid\ActionColumn'],
+                    ],
+                ]); ?>
             </div>
         </div>
-
     </div>
+</div>
 </div>

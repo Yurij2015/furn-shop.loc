@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use backend\models\ProductSearch;
 use frontend\forms\ResendVerificationEmailForm;
 use frontend\forms\VerifyEmailForm;
 use frontend\services\auth\PasswordResetService;
@@ -96,8 +97,13 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
-    }
+        $searchModel = new ProductSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);    }
 
     /**
      * Logs in a user.

@@ -5,11 +5,8 @@
 $this->title = Yii::$app->params['siteName'];
 
 use yii\grid\GridView;
-use yii\web\View;
 use yii\helpers\Html;
-use backend\models\Prodcategory;
-use backend\models\Product;
-use frontend\controllers\ShopcategoryController;
+use yii\widgets\Menu;
 
 ?>
 
@@ -78,7 +75,6 @@ use frontend\controllers\ShopcategoryController;
                         <?php endif; ?>
                     </div>
                 <?php endforeach; ?>
-
 
 
             <?php else: ?>
