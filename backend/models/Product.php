@@ -70,13 +70,13 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             'idproduct' => 'Product Id',
-            'prodcategory_idcategory' => 'Product Category',
-            'productname' => 'Product Title',
-            'prodcontent' => 'Product content',
-            'price' => 'Price',
+            'prodcategory_idcategory' => 'Категория',
+            'productname' => 'Наименование',
+            'prodcontent' => 'Дополнительная информация',
+            'price' => 'Стоимость',
             'keywords' => 'Keywords',
             'proddecription' => 'Product Description',
-            'image' => 'Product image',
+            'image' => 'Изображение',
             'hit' => 'Hit product',
             'new' => 'New product',
             'sale' => 'Product sale',

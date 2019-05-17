@@ -19,7 +19,7 @@ use yii\widgets\Menu;
     <div class="body-content">
         <div class="row">
             <div class="col-lg-3">
-                <h4>Category</h4>
+                <h4>Категории</h4>
                 <hr>
                 <?= \common\components\MenuWidget::widget(['tpl' => 'menu']); ?>
             </div>
